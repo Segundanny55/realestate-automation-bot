@@ -1,0 +1,2055 @@
+{
+    "name": "Real estate autonomous system",
+    "flow": [
+        {
+            "id": 1,
+            "module": "telegram:WatchUpdates",
+            "version": 1,
+            "parameters": {
+                "__IMTHOOK__": 2931548
+            },
+            "mapper": {},
+            "metadata": {
+                "designer": {
+                    "x": -330,
+                    "y": 34
+                },
+                "restore": {
+                    "parameters": {
+                        "__IMTHOOK__": {
+                            "data": {
+                                "editable": "false"
+                            },
+                            "label": "My Telegram Bot Updates webhook"
+                        }
+                    }
+                },
+                "parameters": [
+                    {
+                        "name": "__IMTHOOK__",
+                        "type": "hook:telegramapi",
+                        "label": "Webhook",
+                        "required": true
+                    }
+                ]
+            }
+        },
+        {
+            "id": 8,
+            "module": "airtable:ActionSearchRecords",
+            "version": 3,
+            "parameters": {
+                "__IMTCONN__": 6926631
+            },
+            "mapper": {
+                "base": "appvle026OGgLQ6wu",
+                "view": "viwzMFuMTMHDgyRVb",
+                "table": "tblzBy9u34jUjPhzP",
+                "fields": [
+                    "Telegram Chat id",
+                    "First seen",
+                    "Last active",
+                    "Tag",
+                    "Message count",
+                    "Name"
+                ],
+                "formula": "{Telegram Chat id}= \"{{1.message.chat.id}}\"",
+                "maxRecords": "1",
+                "useColumnId": false
+            },
+            "metadata": {
+                "designer": {
+                    "x": -30,
+                    "y": 34
+                },
+                "restore": {
+                    "expect": {
+                        "base": {
+                            "mode": "chose",
+                            "label": "OSFELD PROPERTIES."
+                        },
+                        "sort": {
+                            "mode": "chose"
+                        },
+                        "view": {
+                            "mode": "chose",
+                            "label": "Grid view"
+                        },
+                        "table": {
+                            "mode": "chose",
+                            "label": "Leads"
+                        },
+                        "fields": {
+                            "mode": "chose",
+                            "label": [
+                                "Telegram Chat id",
+                                "First seen",
+                                "Last active",
+                                "Tag",
+                                "Message count",
+                                "Name"
+                            ]
+                        },
+                        "useColumnId": {
+                            "mode": "chose"
+                        }
+                    },
+                    "parameters": {
+                        "__IMTCONN__": {
+                            "data": {
+                                "scoped": "true",
+                                "connection": "airtable3"
+                            },
+                            "label": "My Airtable OAuth connection (User ID: usr7xtswgs38xN0d4)"
+                        }
+                    }
+                },
+                "parameters": [
+                    {
+                        "name": "__IMTCONN__",
+                        "type": "account:airtable3,airtable2",
+                        "label": "Connection",
+                        "required": true
+                    }
+                ],
+                "expect": [
+                    {
+                        "name": "base",
+                        "type": "select",
+                        "label": "Base",
+                        "required": true
+                    },
+                    {
+                        "name": "useColumnId",
+                        "type": "boolean",
+                        "label": "Use Column ID",
+                        "required": true
+                    },
+                    {
+                        "name": "table",
+                        "type": "select",
+                        "label": "Table",
+                        "required": true
+                    },
+                    {
+                        "name": "formula",
+                        "type": "text",
+                        "label": "Formula"
+                    },
+                    {
+                        "name": "maxRecords",
+                        "type": "integer",
+                        "label": "Limit"
+                    },
+                    {
+                        "name": "sort",
+                        "spec": [
+                            {
+                                "name": "field",
+                                "type": "select",
+                                "label": "Field",
+                                "dynamic": true,
+                                "options": []
+                            },
+                            {
+                                "name": "direction",
+                                "type": "select",
+                                "label": "Direction",
+                                "options": [
+                                    {
+                                        "label": "Descending",
+                                        "value": "desc"
+                                    },
+                                    {
+                                        "label": "Ascending",
+                                        "value": "asc"
+                                    }
+                                ]
+                            }
+                        ],
+                        "type": "array",
+                        "label": "Sort"
+                    },
+                    {
+                        "name": "view",
+                        "type": "select",
+                        "label": "View"
+                    },
+                    {
+                        "name": "fields",
+                        "type": "select",
+                        "label": "Output Fields",
+                        "multiple": true
+                    }
+                ],
+                "interface": [
+                    {
+                        "name": "__IMTLENGTH__",
+                        "type": "uinteger",
+                        "label": "Total number of bundles"
+                    },
+                    {
+                        "name": "__IMTINDEX__",
+                        "type": "uinteger",
+                        "label": "Bundle order position"
+                    },
+                    {
+                        "name": "id",
+                        "type": "text",
+                        "label": "ID"
+                    },
+                    {
+                        "name": "createdTime",
+                        "type": "date",
+                        "label": "Created Time"
+                    },
+                    {
+                        "name": "Telegram Chat id",
+                        "type": "text",
+                        "label": "Telegram Chat id"
+                    },
+                    {
+                        "name": "First seen",
+                        "time": true,
+                        "type": "date",
+                        "label": "First seen"
+                    },
+                    {
+                        "name": "Last active",
+                        "time": true,
+                        "type": "date",
+                        "label": "Last active"
+                    },
+                    {
+                        "name": "Tag",
+                        "type": "array",
+                        "label": "Tag",
+                        "dynamic": true,
+                        "editable": true
+                    },
+                    {
+                        "name": "Message count",
+                        "type": "number",
+                        "label": "Message count"
+                    },
+                    {
+                        "name": "Name",
+                        "type": "text",
+                        "label": "Name"
+                    }
+                ]
+            }
+        },
+        {
+            "id": 9,
+            "module": "airtable:upsertRecord",
+            "version": 3,
+            "parameters": {
+                "__IMTCONN__": 6926631
+            },
+            "mapper": {
+                "base": "appvle026OGgLQ6wu",
+                "table": "tblzBy9u34jUjPhzP",
+                "record": {
+                    "fld7zI6TkAcADjweZ": "{{now}}",
+                    "fldBVqA4zLrvU5ict": [
+                        "new_lead"
+                    ],
+                    "fldQRIQLeHEG5EIlD": "Telegram",
+                    "fldfCF7H14mABNtGr": "{{1.message.from.first_name}}",
+                    "fldsBwufZEEBikLt9": "1",
+                    "fldunvR9DOyHJx1fv": "{{1.message.chat.id}}",
+                    "fldw4VDMUYIkGiiXZ": "{{ifempty(8.`First seen`; now)}}"
+                },
+                "recordId": "{{8.id}}",
+                "typecast": true,
+                "useColumnId": false
+            },
+            "metadata": {
+                "designer": {
+                    "x": 270,
+                    "y": 34
+                },
+                "restore": {
+                    "expect": {
+                        "base": {
+                            "label": "OSFELD PROPERTIES."
+                        },
+                        "table": {
+                            "label": "Leads"
+                        },
+                        "record": {
+                            "nested": {
+                                "fld0ojcFOLeRWtTT1": {
+                                    "mode": "chose"
+                                },
+                                "fldBVqA4zLrvU5ict": {
+                                    "mode": "chose",
+                                    "items": [
+                                        {
+                                            "value": {
+                                                "mode": "edit"
+                                            }
+                                        }
+                                    ]
+                                },
+                                "fldQRIQLeHEG5EIlD": {
+                                    "mode": "chose",
+                                    "label": "Telegram"
+                                }
+                            }
+                        },
+                        "typecast": {
+                            "mode": "chose"
+                        },
+                        "useColumnId": {
+                            "mode": "chose"
+                        }
+                    },
+                    "parameters": {
+                        "__IMTCONN__": {
+                            "data": {
+                                "scoped": "true",
+                                "connection": "airtable3"
+                            },
+                            "label": "My Airtable OAuth connection (User ID: usr7xtswgs38xN0d4)"
+                        }
+                    }
+                },
+                "parameters": [
+                    {
+                        "name": "__IMTCONN__",
+                        "type": "account:airtable3,airtable2",
+                        "label": "Connection",
+                        "required": true
+                    }
+                ],
+                "expect": [
+                    {
+                        "name": "base",
+                        "type": "select",
+                        "label": "Base",
+                        "required": true
+                    },
+                    {
+                        "name": "typecast",
+                        "type": "boolean",
+                        "label": "Smart links",
+                        "required": true
+                    },
+                    {
+                        "name": "useColumnId",
+                        "type": "boolean",
+                        "label": "Use Column ID",
+                        "required": true
+                    },
+                    {
+                        "name": "table",
+                        "type": "select",
+                        "label": "Table",
+                        "required": true
+                    },
+                    {
+                        "name": "recordId",
+                        "type": "text",
+                        "label": "Record ID"
+                    },
+                    {
+                        "name": "record",
+                        "spec": [
+                            {
+                                "name": "fldunvR9DOyHJx1fv",
+                                "type": "text",
+                                "label": "Telegram Chat id"
+                            },
+                            {
+                                "mode": "edit",
+                                "name": "fldQRIQLeHEG5EIlD",
+                                "type": "select",
+                                "label": "Source"
+                            },
+                            {
+                                "name": "fldw4VDMUYIkGiiXZ",
+                                "time": true,
+                                "type": "date",
+                                "label": "First seen"
+                            },
+                            {
+                                "name": "fld7zI6TkAcADjweZ",
+                                "time": true,
+                                "type": "date",
+                                "label": "Last active"
+                            },
+                            {
+                                "name": "fldBVqA4zLrvU5ict",
+                                "spec": {
+                                    "mode": "edit",
+                                    "name": "value",
+                                    "type": "select",
+                                    "label": "Value",
+                                    "dynamic": true,
+                                    "options": [
+                                        {
+                                            "label": "New lead",
+                                            "value": "New lead"
+                                        },
+                                        {
+                                            "label": "Engaged",
+                                            "value": "Engaged"
+                                        },
+                                        {
+                                            "label": "Hot",
+                                            "value": "Hot"
+                                        },
+                                        {
+                                            "label": "Vip",
+                                            "value": "Vip"
+                                        },
+                                        {
+                                            "label": "Follow up",
+                                            "value": "Follow up"
+                                        },
+                                        {
+                                            "label": "new_lead",
+                                            "value": "new_lead"
+                                        },
+                                        {
+                                            "label": "recbHRc05C0yarSkg",
+                                            "value": "recbHRc05C0yarSkg"
+                                        }
+                                    ],
+                                    "validate": false
+                                },
+                                "type": "array",
+                                "label": "Tag"
+                            },
+                            {
+                                "name": "fldsBwufZEEBikLt9",
+                                "type": "number",
+                                "label": "Message count"
+                            },
+                            {
+                                "name": "fldfCF7H14mABNtGr",
+                                "type": "text",
+                                "label": "Name"
+                            },
+                            {
+                                "name": "fldCSgNzRw1gwV5hf",
+                                "type": "text",
+                                "label": "Phone number"
+                            },
+                            {
+                                "name": "fldLnKxkuKC3tf3O7",
+                                "type": "text",
+                                "label": "Properties"
+                            },
+                            {
+                                "name": "fld0ojcFOLeRWtTT1",
+                                "spec": {
+                                    "name": "value",
+                                    "label": "Record ID"
+                                },
+                                "type": "array",
+                                "label": "Conversations"
+                            },
+                            {
+                                "name": "fldCUWp5tTXhd5Ii5",
+                                "type": "text",
+                                "label": "Conversations 2"
+                            }
+                        ],
+                        "type": "collection",
+                        "label": "Record"
+                    }
+                ],
+                "interface": [
+                    {
+                        "name": "id",
+                        "type": "text",
+                        "label": "ID"
+                    },
+                    {
+                        "name": "createdTime",
+                        "type": "date",
+                        "label": "Created Time"
+                    },
+                    {
+                        "name": "Telegram Chat id",
+                        "type": "text",
+                        "label": "Telegram Chat id"
+                    },
+                    {
+                        "name": "Source",
+                        "type": "text",
+                        "label": "Source"
+                    },
+                    {
+                        "name": "First seen",
+                        "time": true,
+                        "type": "date",
+                        "label": "First seen"
+                    },
+                    {
+                        "name": "Last active",
+                        "time": true,
+                        "type": "date",
+                        "label": "Last active"
+                    },
+                    {
+                        "name": "Tag",
+                        "type": "array",
+                        "label": "Tag",
+                        "dynamic": true,
+                        "editable": true
+                    },
+                    {
+                        "name": "Message count",
+                        "type": "number",
+                        "label": "Message count"
+                    },
+                    {
+                        "name": "Name",
+                        "type": "text",
+                        "label": "Name"
+                    },
+                    {
+                        "name": "Phone number",
+                        "type": "text",
+                        "label": "Phone number"
+                    },
+                    {
+                        "name": "Attachment Summary",
+                        "type": "text",
+                        "label": "Attachment Summary"
+                    },
+                    {
+                        "name": "Properties",
+                        "type": "text",
+                        "label": "Properties"
+                    },
+                    {
+                        "name": "Conversations",
+                        "spec": {
+                            "label": "Record ID"
+                        },
+                        "type": "array",
+                        "label": "Conversations"
+                    },
+                    {
+                        "name": "Conversations 2",
+                        "type": "text",
+                        "label": "Conversations 2"
+                    }
+                ]
+            }
+        },
+        {
+            "id": 10,
+            "module": "builtin:BasicRouter",
+            "version": 1,
+            "parameters": {
+                "else": 0
+            },
+            "mapper": null,
+            "metadata": {
+                "designer": {
+                    "x": 570,
+                    "y": 34
+                }
+            },
+            "routes": [
+                {
+                    "flow": [
+                        {
+                            "id": 11,
+                            "module": "airtable:ActionSearchRecords",
+                            "version": 3,
+                            "parameters": {
+                                "__IMTCONN__": 6926631
+                            },
+                            "mapper": {
+                                "base": "appvle026OGgLQ6wu",
+                                "sort": [
+                                    {
+                                        "field": "Timestamp",
+                                        "direction": "asc"
+                                    }
+                                ],
+                                "view": "viwatxXY2VH3ZCCUV",
+                                "table": "tblflKmkdtKtVFDs9",
+                                "fields": [
+                                    "Chat ID",
+                                    "Role",
+                                    "Message",
+                                    "Timestamp"
+                                ],
+                                "formula": "{Chat ID} = \"{{1.message.chat.id}}\"",
+                                "maxRecords": "10",
+                                "useColumnId": false
+                            },
+                            "metadata": {
+                                "designer": {
+                                    "x": 786,
+                                    "y": -91
+                                },
+                                "restore": {
+                                    "expect": {
+                                        "base": {
+                                            "mode": "chose",
+                                            "label": "OSFELD PROPERTIES."
+                                        },
+                                        "sort": {
+                                            "mode": "chose",
+                                            "items": [
+                                                {
+                                                    "field": {
+                                                        "mode": "chose",
+                                                        "label": "Timestamp"
+                                                    },
+                                                    "direction": {
+                                                        "mode": "chose",
+                                                        "label": "Ascending"
+                                                    }
+                                                }
+                                            ]
+                                        },
+                                        "view": {
+                                            "mode": "chose",
+                                            "label": "Grid view"
+                                        },
+                                        "table": {
+                                            "mode": "chose",
+                                            "label": "Conversations"
+                                        },
+                                        "fields": {
+                                            "mode": "chose",
+                                            "label": [
+                                                "Chat ID",
+                                                "Role",
+                                                "Message",
+                                                "Timestamp"
+                                            ]
+                                        },
+                                        "useColumnId": {
+                                            "mode": "chose"
+                                        }
+                                    },
+                                    "parameters": {
+                                        "__IMTCONN__": {
+                                            "data": {
+                                                "scoped": "true",
+                                                "connection": "airtable3"
+                                            },
+                                            "label": "My Airtable OAuth connection (User ID: usr7xtswgs38xN0d4)"
+                                        }
+                                    }
+                                },
+                                "parameters": [
+                                    {
+                                        "name": "__IMTCONN__",
+                                        "type": "account:airtable3,airtable2",
+                                        "label": "Connection",
+                                        "required": true
+                                    }
+                                ],
+                                "expect": [
+                                    {
+                                        "name": "base",
+                                        "type": "select",
+                                        "label": "Base",
+                                        "required": true
+                                    },
+                                    {
+                                        "name": "useColumnId",
+                                        "type": "boolean",
+                                        "label": "Use Column ID",
+                                        "required": true
+                                    },
+                                    {
+                                        "name": "table",
+                                        "type": "select",
+                                        "label": "Table",
+                                        "required": true
+                                    },
+                                    {
+                                        "name": "formula",
+                                        "type": "text",
+                                        "label": "Formula"
+                                    },
+                                    {
+                                        "name": "maxRecords",
+                                        "type": "integer",
+                                        "label": "Limit"
+                                    },
+                                    {
+                                        "name": "sort",
+                                        "spec": [
+                                            {
+                                                "name": "field",
+                                                "type": "select",
+                                                "label": "Field",
+                                                "dynamic": true,
+                                                "options": []
+                                            },
+                                            {
+                                                "name": "direction",
+                                                "type": "select",
+                                                "label": "Direction",
+                                                "options": [
+                                                    {
+                                                        "label": "Descending",
+                                                        "value": "desc"
+                                                    },
+                                                    {
+                                                        "label": "Ascending",
+                                                        "value": "asc"
+                                                    }
+                                                ]
+                                            }
+                                        ],
+                                        "type": "array",
+                                        "label": "Sort"
+                                    },
+                                    {
+                                        "name": "view",
+                                        "type": "select",
+                                        "label": "View"
+                                    },
+                                    {
+                                        "name": "fields",
+                                        "type": "select",
+                                        "label": "Output Fields",
+                                        "multiple": true
+                                    }
+                                ],
+                                "interface": [
+                                    {
+                                        "name": "id",
+                                        "type": "text",
+                                        "label": "ID"
+                                    },
+                                    {
+                                        "name": "createdTime",
+                                        "type": "date",
+                                        "label": "Created Time"
+                                    },
+                                    {
+                                        "name": "Chat ID",
+                                        "type": "text",
+                                        "label": "Chat ID"
+                                    },
+                                    {
+                                        "name": "Role",
+                                        "type": "text",
+                                        "label": "Role"
+                                    },
+                                    {
+                                        "name": "Message",
+                                        "type": "text",
+                                        "label": "Message",
+                                        "multiline": true
+                                    },
+                                    {
+                                        "name": "Timestamp",
+                                        "time": true,
+                                        "type": "date",
+                                        "label": "Timestamp"
+                                    }
+                                ]
+                            }
+                        },
+                        {
+                            "id": 15,
+                            "module": "util:TextAggregator",
+                            "version": 1,
+                            "parameters": {
+                                "feeder": 11,
+                                "rowSeparator": ""
+                            },
+                            "mapper": {
+                                "value": "{{11.Role}}: {{11.Message}}"
+                            },
+                            "metadata": {
+                                "designer": {
+                                    "x": 1063,
+                                    "y": -88
+                                },
+                                "restore": {
+                                    "extra": {
+                                        "feeder": {
+                                            "label": "Airtable - Search Records [11]"
+                                        }
+                                    },
+                                    "parameters": {
+                                        "rowSeparator": {
+                                            "label": "Empty"
+                                        }
+                                    }
+                                },
+                                "parameters": [
+                                    {
+                                        "name": "rowSeparator",
+                                        "type": "select",
+                                        "label": "Row separator",
+                                        "validate": {
+                                            "enum": [
+                                                "\n",
+                                                "\t",
+                                                "other"
+                                            ]
+                                        }
+                                    }
+                                ],
+                                "expect": [
+                                    {
+                                        "name": "value",
+                                        "type": "text",
+                                        "label": "Text"
+                                    }
+                                ]
+                            }
+                        },
+                        {
+                            "id": 13,
+                            "module": "airtable:ActionSearchRecords",
+                            "version": 3,
+                            "parameters": {
+                                "__IMTCONN__": 6926631
+                            },
+                            "mapper": {
+                                "base": "appvle026OGgLQ6wu",
+                                "view": "viwQQ6kcbeJWSNScV",
+                                "table": "tbl9So1WwKnWcN6JJ",
+                                "fields": [
+                                    "Property Name",
+                                    "Property Type",
+                                    "No of bedroom",
+                                    "Address",
+                                    "Area",
+                                    "Type",
+                                    "Price(Naira)",
+                                    "Status",
+                                    "Description",
+                                    "Photos",
+                                    "Agent Phone",
+                                    "Agent contact",
+                                    "Features",
+                                    "Agent Email",
+                                    "AI Property Summary"
+                                ],
+                                "formula": "{Status}=\"Available\"",
+                                "maxRecords": "5",
+                                "useColumnId": false
+                            },
+                            "metadata": {
+                                "designer": {
+                                    "x": 1331,
+                                    "y": -83
+                                },
+                                "restore": {
+                                    "expect": {
+                                        "base": {
+                                            "mode": "chose",
+                                            "label": "OSFELD PROPERTIES."
+                                        },
+                                        "sort": {
+                                            "mode": "chose"
+                                        },
+                                        "view": {
+                                            "mode": "chose",
+                                            "label": "Grid view"
+                                        },
+                                        "table": {
+                                            "mode": "chose",
+                                            "label": "Properties"
+                                        },
+                                        "fields": {
+                                            "mode": "chose",
+                                            "label": [
+                                                "Property Name",
+                                                "Property Type",
+                                                "No of bedroom",
+                                                "Address",
+                                                "Area",
+                                                "Type",
+                                                "Price(Naira)",
+                                                "Status",
+                                                "Description",
+                                                "Photos",
+                                                "Agent Phone",
+                                                "Agent contact",
+                                                "Features",
+                                                "Agent Email",
+                                                "AI Property Summary"
+                                            ]
+                                        },
+                                        "useColumnId": {
+                                            "mode": "chose"
+                                        }
+                                    },
+                                    "parameters": {
+                                        "__IMTCONN__": {
+                                            "data": {
+                                                "scoped": "true",
+                                                "connection": "airtable3"
+                                            },
+                                            "label": "My Airtable OAuth connection (User ID: usr7xtswgs38xN0d4)"
+                                        }
+                                    }
+                                },
+                                "parameters": [
+                                    {
+                                        "name": "__IMTCONN__",
+                                        "type": "account:airtable3,airtable2",
+                                        "label": "Connection",
+                                        "required": true
+                                    }
+                                ],
+                                "expect": [
+                                    {
+                                        "name": "base",
+                                        "type": "select",
+                                        "label": "Base",
+                                        "required": true
+                                    },
+                                    {
+                                        "name": "useColumnId",
+                                        "type": "boolean",
+                                        "label": "Use Column ID",
+                                        "required": true
+                                    },
+                                    {
+                                        "name": "table",
+                                        "type": "select",
+                                        "label": "Table",
+                                        "required": true
+                                    },
+                                    {
+                                        "name": "formula",
+                                        "type": "text",
+                                        "label": "Formula"
+                                    },
+                                    {
+                                        "name": "maxRecords",
+                                        "type": "integer",
+                                        "label": "Limit"
+                                    },
+                                    {
+                                        "name": "sort",
+                                        "spec": [
+                                            {
+                                                "name": "field",
+                                                "type": "select",
+                                                "label": "Field",
+                                                "dynamic": true,
+                                                "options": []
+                                            },
+                                            {
+                                                "name": "direction",
+                                                "type": "select",
+                                                "label": "Direction",
+                                                "options": [
+                                                    {
+                                                        "label": "Descending",
+                                                        "value": "desc"
+                                                    },
+                                                    {
+                                                        "label": "Ascending",
+                                                        "value": "asc"
+                                                    }
+                                                ]
+                                            }
+                                        ],
+                                        "type": "array",
+                                        "label": "Sort"
+                                    },
+                                    {
+                                        "name": "view",
+                                        "type": "select",
+                                        "label": "View"
+                                    },
+                                    {
+                                        "name": "fields",
+                                        "type": "select",
+                                        "label": "Output Fields",
+                                        "multiple": true
+                                    }
+                                ],
+                                "interface": [
+                                    {
+                                        "name": "__IMTLENGTH__",
+                                        "type": "uinteger",
+                                        "label": "Total number of bundles"
+                                    },
+                                    {
+                                        "name": "__IMTINDEX__",
+                                        "type": "uinteger",
+                                        "label": "Bundle order position"
+                                    },
+                                    {
+                                        "name": "id",
+                                        "type": "text",
+                                        "label": "ID"
+                                    },
+                                    {
+                                        "name": "createdTime",
+                                        "type": "date",
+                                        "label": "Created Time"
+                                    },
+                                    {
+                                        "name": "Property Name",
+                                        "type": "text",
+                                        "label": "Property Name"
+                                    },
+                                    {
+                                        "name": "Property Type",
+                                        "type": "text",
+                                        "label": "Property Type"
+                                    },
+                                    {
+                                        "name": "No of bedroom",
+                                        "type": "number",
+                                        "label": "No of bedroom"
+                                    },
+                                    {
+                                        "name": "Address",
+                                        "type": "text",
+                                        "label": "Address",
+                                        "multiline": true
+                                    },
+                                    {
+                                        "name": "Area",
+                                        "type": "text",
+                                        "label": "Area"
+                                    },
+                                    {
+                                        "name": "Type",
+                                        "type": "text",
+                                        "label": "Type"
+                                    },
+                                    {
+                                        "name": "Features",
+                                        "type": "array",
+                                        "label": "Features",
+                                        "dynamic": true,
+                                        "editable": true
+                                    },
+                                    {
+                                        "name": "Price(Naira)",
+                                        "type": "number",
+                                        "label": "Price(Naira)"
+                                    },
+                                    {
+                                        "name": "Status",
+                                        "type": "text",
+                                        "label": "Status"
+                                    },
+                                    {
+                                        "name": "Description",
+                                        "type": "text",
+                                        "label": "Description",
+                                        "multiline": true
+                                    },
+                                    {
+                                        "name": "Photos",
+                                        "spec": [
+                                            {
+                                                "name": "id",
+                                                "type": "text",
+                                                "label": "ID"
+                                            },
+                                            {
+                                                "name": "width",
+                                                "type": "uinteger",
+                                                "label": "Width"
+                                            },
+                                            {
+                                                "name": "height",
+                                                "type": "uinteger",
+                                                "label": "Height"
+                                            },
+                                            {
+                                                "name": "url",
+                                                "type": "url",
+                                                "label": "URL"
+                                            },
+                                            {
+                                                "name": "filename",
+                                                "type": "filename",
+                                                "label": "File name"
+                                            },
+                                            {
+                                                "name": "size",
+                                                "type": "uinteger",
+                                                "label": "Size"
+                                            },
+                                            {
+                                                "name": "type",
+                                                "type": "text",
+                                                "label": "MIME type"
+                                            },
+                                            {
+                                                "name": "thumbnails",
+                                                "spec": [
+                                                    {
+                                                        "name": "small",
+                                                        "spec": [
+                                                            {
+                                                                "name": "url",
+                                                                "type": "url",
+                                                                "label": "URL"
+                                                            },
+                                                            {
+                                                                "name": "width",
+                                                                "type": "uinteger",
+                                                                "label": "Width"
+                                                            },
+                                                            {
+                                                                "name": "height",
+                                                                "type": "uinteger",
+                                                                "label": "Height"
+                                                            }
+                                                        ],
+                                                        "type": "collection",
+                                                        "label": "Small"
+                                                    },
+                                                    {
+                                                        "name": "large",
+                                                        "spec": [
+                                                            {
+                                                                "name": "url",
+                                                                "type": "url",
+                                                                "label": "URL"
+                                                            },
+                                                            {
+                                                                "name": "width",
+                                                                "type": "uinteger",
+                                                                "label": "Width"
+                                                            },
+                                                            {
+                                                                "name": "height",
+                                                                "type": "uinteger",
+                                                                "label": "Height"
+                                                            }
+                                                        ],
+                                                        "type": "collection",
+                                                        "label": "Large"
+                                                    },
+                                                    {
+                                                        "name": "full",
+                                                        "spec": [
+                                                            {
+                                                                "name": "url",
+                                                                "type": "url",
+                                                                "label": "URL"
+                                                            },
+                                                            {
+                                                                "name": "width",
+                                                                "type": "uinteger",
+                                                                "label": "Width"
+                                                            },
+                                                            {
+                                                                "name": "height",
+                                                                "type": "uinteger",
+                                                                "label": "Height"
+                                                            }
+                                                        ],
+                                                        "type": "collection",
+                                                        "label": "Full"
+                                                    }
+                                                ],
+                                                "type": "collection",
+                                                "label": "Thumbnails"
+                                            }
+                                        ],
+                                        "type": "array",
+                                        "label": "Photos"
+                                    },
+                                    {
+                                        "name": "Agent Phone",
+                                        "type": "array",
+                                        "label": "Agent Phone"
+                                    },
+                                    {
+                                        "name": "Agent contact",
+                                        "spec": {
+                                            "label": "Record ID"
+                                        },
+                                        "type": "array",
+                                        "label": "Agent contact"
+                                    },
+                                    {
+                                        "name": "Agent Email",
+                                        "type": "array",
+                                        "label": "Agent Email"
+                                    },
+                                    {
+                                        "name": "AI Property Summary",
+                                        "type": "text",
+                                        "label": "AI Property Summary"
+                                    }
+                                ]
+                            }
+                        },
+                        {
+                            "id": 16,
+                            "module": "util:TextAggregator",
+                            "version": 1,
+                            "parameters": {
+                                "feeder": 13,
+                                "rowSeparator": ""
+                            },
+                            "mapper": {
+                                "value": "{{13.`No of bedroom`}}{{13.`Property Type`}}{{13.Area}}{{13.`Price(Naira)`}}{{13.Status}}{{13.Description}}{{13.`Agent contact`}}{{13.`Agent Phone`}}\n---"
+                            },
+                            "metadata": {
+                                "designer": {
+                                    "x": 1542,
+                                    "y": -80
+                                },
+                                "restore": {
+                                    "extra": {
+                                        "feeder": {
+                                            "label": "Airtable - Search Records [13]"
+                                        }
+                                    },
+                                    "parameters": {
+                                        "rowSeparator": {
+                                            "label": "Empty"
+                                        }
+                                    }
+                                },
+                                "parameters": [
+                                    {
+                                        "name": "rowSeparator",
+                                        "type": "select",
+                                        "label": "Row separator",
+                                        "validate": {
+                                            "enum": [
+                                                "\n",
+                                                "\t",
+                                                "other"
+                                            ]
+                                        }
+                                    }
+                                ],
+                                "expect": [
+                                    {
+                                        "name": "value",
+                                        "type": "text",
+                                        "label": "Text"
+                                    }
+                                ]
+                            }
+                        },
+                        {
+                            "id": 6,
+                            "module": "anthropic-claude:simpleTextPrompt",
+                            "version": 1,
+                            "parameters": {},
+                            "mapper": {
+                                "model": "claude-sonnet-4-6",
+                                "max_tokens": "1000",
+                                "textPrompt": "You are a helpful and professional real estate \nassistant for Osfeld Properties, a real estate \ncompany based in Ibadan, Nigeria.\n\nCONVERSATION HISTORY\n{{15.text}}\n\nAVAILABLE PROPERTIES:\n{{16.text}}\n\nUSER MESSAGE:\n{{1.message.text}}\n\n\nINSTRUCTIONS:\nUse conversation history for full context\n- If properties match what the user wants present \n  them clearly with name, price, area and agent contact\n- Always include agent phone number when presenting \n  a property\n- If no properties match suggest closest alternatives\n- If user asks about documents viewing or next steps \n  use conversation history to identify which property \n  they mean\n- For general real estate questions answer from \n  your knowledge\n- Keep responses concise and conversational\n- Format prices clearly e.g. N2,000,000\n- Never invent properties not in the list above\n- Respond in a warm and professional tone\n\n"
+                            },
+                            "metadata": {
+                                "designer": {
+                                    "x": 1767,
+                                    "y": -93
+                                },
+                                "restore": {
+                                    "expect": {
+                                        "model": {
+                                            "label": "Claude Sonnet 4.6Frontier intelligence at scale-built for coding, agents, and enterprise workflows"
+                                        }
+                                    }
+                                },
+                                "expect": [
+                                    {
+                                        "name": "model",
+                                        "type": "select",
+                                        "label": "Model",
+                                        "required": true,
+                                        "validate": {
+                                            "enum": [
+                                                "claude-opus-4-7",
+                                                "claude-sonnet-4-6",
+                                                "claude-opus-4-6",
+                                                "claude-sonnet-4-5",
+                                                "claude-haiku-4-5",
+                                                "claude-opus-4-5"
+                                            ]
+                                        }
+                                    },
+                                    {
+                                        "name": "textPrompt",
+                                        "type": "text",
+                                        "label": "Text Prompt",
+                                        "required": true
+                                    },
+                                    {
+                                        "name": "max_tokens",
+                                        "type": "uinteger",
+                                        "label": "Max Tokens",
+                                        "required": true
+                                    }
+                                ]
+                            }
+                        },
+                        {
+                            "id": 14,
+                            "module": "airtable:ActionCreateRecord",
+                            "version": 3,
+                            "parameters": {
+                                "__IMTCONN__": 6926631
+                            },
+                            "mapper": {
+                                "base": "appvle026OGgLQ6wu",
+                                "table": "tblflKmkdtKtVFDs9",
+                                "record": {
+                                    "fld9Cv02SwwKE9qce": "{{1.message.text}}",
+                                    "fldDuOetQkIRjzO0j": "{{1.message.chat.id}}",
+                                    "fldEAXt7HuG2qLdZH": "{{now}}",
+                                    "fldEMJQDwcNrP1LGi": [
+                                        "{{8.id}}"
+                                    ],
+                                    "fldrd0GiECPTiwCeY": "User"
+                                },
+                                "typecast": true,
+                                "useColumnId": false
+                            },
+                            "metadata": {
+                                "designer": {
+                                    "x": 2040,
+                                    "y": -88
+                                },
+                                "restore": {
+                                    "expect": {
+                                        "base": {
+                                            "label": "OSFELD PROPERTIES."
+                                        },
+                                        "table": {
+                                            "label": "Conversations",
+                                            "nested": [
+                                                {
+                                                    "name": "record",
+                                                    "spec": [
+                                                        {
+                                                            "name": "fldDuOetQkIRjzO0j",
+                                                            "type": "text",
+                                                            "label": "Chat ID"
+                                                        },
+                                                        {
+                                                            "mode": "edit",
+                                                            "name": "fldrd0GiECPTiwCeY",
+                                                            "type": "select",
+                                                            "label": "Role",
+                                                            "dynamic": true,
+                                                            "options": [
+                                                                {
+                                                                    "label": "User",
+                                                                    "value": "User"
+                                                                },
+                                                                {
+                                                                    "label": "Assistant",
+                                                                    "value": "Assistant"
+                                                                }
+                                                            ],
+                                                            "validate": false
+                                                        },
+                                                        {
+                                                            "name": "fld9Cv02SwwKE9qce",
+                                                            "type": "text",
+                                                            "label": "Message",
+                                                            "multiline": true
+                                                        },
+                                                        {
+                                                            "name": "fldEAXt7HuG2qLdZH",
+                                                            "time": true,
+                                                            "type": "date",
+                                                            "label": "Timestamp"
+                                                        },
+                                                        {
+                                                            "name": "fldziv9uHqJSdiG53",
+                                                            "spec": {
+                                                                "label": "Record ID"
+                                                            },
+                                                            "type": "array",
+                                                            "label": "Related Property"
+                                                        },
+                                                        {
+                                                            "name": "fldEMJQDwcNrP1LGi",
+                                                            "spec": {
+                                                                "label": "Record ID"
+                                                            },
+                                                            "type": "array",
+                                                            "label": "Related Lead"
+                                                        },
+                                                        {
+                                                            "name": "fldV5iMKmVduT0980",
+                                                            "spec": [
+                                                                {
+                                                                    "help": "Airtable will download the file at the given url and keep its own copy of it.",
+                                                                    "name": "url",
+                                                                    "type": "text",
+                                                                    "label": "File URL"
+                                                                },
+                                                                {
+                                                                    "help": "If empty, Airtable will generate the name automatically.",
+                                                                    "name": "filename",
+                                                                    "type": "filename",
+                                                                    "label": "File name"
+                                                                }
+                                                            ],
+                                                            "type": "array",
+                                                            "label": "Attachments",
+                                                            "editable": true
+                                                        }
+                                                    ],
+                                                    "type": "collection",
+                                                    "label": "Record"
+                                                }
+                                            ]
+                                        },
+                                        "record": {
+                                            "nested": {
+                                                "fldEMJQDwcNrP1LGi": {
+                                                    "mode": "chose",
+                                                    "items": [
+                                                        null
+                                                    ]
+                                                },
+                                                "fldV5iMKmVduT0980": {
+                                                    "mode": "chose"
+                                                },
+                                                "fldrd0GiECPTiwCeY": {
+                                                    "mode": "chose",
+                                                    "label": "User"
+                                                },
+                                                "fldziv9uHqJSdiG53": {
+                                                    "mode": "chose"
+                                                }
+                                            }
+                                        },
+                                        "typecast": {
+                                            "mode": "chose"
+                                        },
+                                        "useColumnId": {
+                                            "mode": "chose"
+                                        }
+                                    },
+                                    "parameters": {
+                                        "__IMTCONN__": {
+                                            "data": {
+                                                "scoped": "true",
+                                                "connection": "airtable3"
+                                            },
+                                            "label": "My Airtable OAuth connection (User ID: usr7xtswgs38xN0d4)"
+                                        }
+                                    }
+                                },
+                                "parameters": [
+                                    {
+                                        "name": "__IMTCONN__",
+                                        "type": "account:airtable3,airtable2",
+                                        "label": "Connection",
+                                        "required": true
+                                    }
+                                ],
+                                "expect": [
+                                    {
+                                        "name": "base",
+                                        "type": "select",
+                                        "label": "Base",
+                                        "required": true
+                                    },
+                                    {
+                                        "name": "typecast",
+                                        "type": "boolean",
+                                        "label": "Smart links",
+                                        "required": true
+                                    },
+                                    {
+                                        "name": "useColumnId",
+                                        "type": "boolean",
+                                        "label": "Use Column ID",
+                                        "required": true
+                                    },
+                                    {
+                                        "name": "table",
+                                        "type": "select",
+                                        "label": "Table",
+                                        "required": true
+                                    },
+                                    {
+                                        "name": "record",
+                                        "spec": [
+                                            {
+                                                "name": "fldDuOetQkIRjzO0j",
+                                                "type": "text",
+                                                "label": "Chat ID"
+                                            },
+                                            {
+                                                "mode": "edit",
+                                                "name": "fldrd0GiECPTiwCeY",
+                                                "type": "select",
+                                                "label": "Role"
+                                            },
+                                            {
+                                                "name": "fld9Cv02SwwKE9qce",
+                                                "type": "text",
+                                                "label": "Message"
+                                            },
+                                            {
+                                                "name": "fldEAXt7HuG2qLdZH",
+                                                "time": true,
+                                                "type": "date",
+                                                "label": "Timestamp"
+                                            },
+                                            {
+                                                "name": "fldziv9uHqJSdiG53",
+                                                "spec": {
+                                                    "name": "value",
+                                                    "label": "Record ID"
+                                                },
+                                                "type": "array",
+                                                "label": "Related Property"
+                                            },
+                                            {
+                                                "name": "fldEMJQDwcNrP1LGi",
+                                                "spec": {
+                                                    "name": "value",
+                                                    "label": "Record ID"
+                                                },
+                                                "type": "array",
+                                                "label": "Related Lead"
+                                            },
+                                            {
+                                                "name": "fldV5iMKmVduT0980",
+                                                "spec": [
+                                                    {
+                                                        "name": "url",
+                                                        "type": "text",
+                                                        "label": "File URL"
+                                                    },
+                                                    {
+                                                        "name": "filename",
+                                                        "type": "filename",
+                                                        "label": "File name"
+                                                    }
+                                                ],
+                                                "type": "array",
+                                                "label": "Attachments"
+                                            }
+                                        ],
+                                        "type": "collection",
+                                        "label": "Record"
+                                    }
+                                ],
+                                "interface": [
+                                    {
+                                        "name": "id",
+                                        "type": "text",
+                                        "label": "ID"
+                                    },
+                                    {
+                                        "name": "createdTime",
+                                        "type": "date",
+                                        "label": "Created Time"
+                                    },
+                                    {
+                                        "name": "Chat ID",
+                                        "type": "text",
+                                        "label": "Chat ID"
+                                    },
+                                    {
+                                        "name": "Role",
+                                        "type": "text",
+                                        "label": "Role"
+                                    },
+                                    {
+                                        "name": "Message",
+                                        "type": "text",
+                                        "label": "Message",
+                                        "multiline": true
+                                    },
+                                    {
+                                        "name": "Timestamp",
+                                        "time": true,
+                                        "type": "date",
+                                        "label": "Timestamp"
+                                    },
+                                    {
+                                        "name": "Related Property",
+                                        "spec": {
+                                            "label": "Record ID"
+                                        },
+                                        "type": "array",
+                                        "label": "Related Property"
+                                    },
+                                    {
+                                        "name": "Related Lead",
+                                        "spec": {
+                                            "label": "Record ID"
+                                        },
+                                        "type": "array",
+                                        "label": "Related Lead"
+                                    },
+                                    {
+                                        "name": "Attachments",
+                                        "spec": [
+                                            {
+                                                "name": "id",
+                                                "type": "text",
+                                                "label": "ID"
+                                            },
+                                            {
+                                                "name": "width",
+                                                "type": "uinteger",
+                                                "label": "Width"
+                                            },
+                                            {
+                                                "name": "height",
+                                                "type": "uinteger",
+                                                "label": "Height"
+                                            },
+                                            {
+                                                "name": "url",
+                                                "type": "url",
+                                                "label": "URL"
+                                            },
+                                            {
+                                                "name": "filename",
+                                                "type": "filename",
+                                                "label": "File name"
+                                            },
+                                            {
+                                                "name": "size",
+                                                "type": "uinteger",
+                                                "label": "Size"
+                                            },
+                                            {
+                                                "name": "type",
+                                                "type": "text",
+                                                "label": "MIME type"
+                                            },
+                                            {
+                                                "name": "thumbnails",
+                                                "spec": [
+                                                    {
+                                                        "name": "small",
+                                                        "spec": [
+                                                            {
+                                                                "name": "url",
+                                                                "type": "url",
+                                                                "label": "URL"
+                                                            },
+                                                            {
+                                                                "name": "width",
+                                                                "type": "uinteger",
+                                                                "label": "Width"
+                                                            },
+                                                            {
+                                                                "name": "height",
+                                                                "type": "uinteger",
+                                                                "label": "Height"
+                                                            }
+                                                        ],
+                                                        "type": "collection",
+                                                        "label": "Small"
+                                                    },
+                                                    {
+                                                        "name": "large",
+                                                        "spec": [
+                                                            {
+                                                                "name": "url",
+                                                                "type": "url",
+                                                                "label": "URL"
+                                                            },
+                                                            {
+                                                                "name": "width",
+                                                                "type": "uinteger",
+                                                                "label": "Width"
+                                                            },
+                                                            {
+                                                                "name": "height",
+                                                                "type": "uinteger",
+                                                                "label": "Height"
+                                                            }
+                                                        ],
+                                                        "type": "collection",
+                                                        "label": "Large"
+                                                    },
+                                                    {
+                                                        "name": "full",
+                                                        "spec": [
+                                                            {
+                                                                "name": "url",
+                                                                "type": "url",
+                                                                "label": "URL"
+                                                            },
+                                                            {
+                                                                "name": "width",
+                                                                "type": "uinteger",
+                                                                "label": "Width"
+                                                            },
+                                                            {
+                                                                "name": "height",
+                                                                "type": "uinteger",
+                                                                "label": "Height"
+                                                            }
+                                                        ],
+                                                        "type": "collection",
+                                                        "label": "Full"
+                                                    }
+                                                ],
+                                                "type": "collection",
+                                                "label": "Thumbnails"
+                                            }
+                                        ],
+                                        "type": "array",
+                                        "label": "Attachments"
+                                    },
+                                    {
+                                        "name": "AI Conversation Summary",
+                                        "type": "text",
+                                        "label": "AI Conversation Summary"
+                                    },
+                                    {
+                                        "name": "AI Follow-Up Suggestion",
+                                        "type": "text",
+                                        "label": "AI Follow-Up Suggestion"
+                                    }
+                                ]
+                            }
+                        },
+                        {
+                            "id": 7,
+                            "module": "telegram:SendReplyMessage",
+                            "version": 1,
+                            "parameters": {
+                                "__IMTCONN__": 7160178
+                            },
+                            "mapper": {
+                                "text": "{{6.result}}",
+                                "chatId": "{{1.message.chat.id}}",
+                                "parseMode": "Markdown",
+                                "replyMarkup": "",
+                                "messageThreadId": "",
+                                "replyToMessageId": "",
+                                "replyMarkupAssembleType": "reply_markup_enter"
+                            },
+                            "metadata": {
+                                "designer": {
+                                    "x": 2334,
+                                    "y": -93
+                                },
+                                "restore": {
+                                    "expect": {
+                                        "parseMode": {
+                                            "label": "Markdown"
+                                        },
+                                        "disableNotification": {
+                                            "mode": "chose"
+                                        },
+                                        "replyMarkupAssembleType": {
+                                            "label": "Enter the Reply Markup"
+                                        }
+                                    },
+                                    "parameters": {
+                                        "__IMTCONN__": {
+                                            "data": {
+                                                "scoped": "true",
+                                                "connection": "telegram"
+                                            },
+                                            "label": "Real TG"
+                                        }
+                                    }
+                                },
+                                "parameters": [
+                                    {
+                                        "name": "__IMTCONN__",
+                                        "type": "account:telegram",
+                                        "label": "Connection",
+                                        "required": true
+                                    }
+                                ],
+                                "expect": [
+                                    {
+                                        "name": "chatId",
+                                        "type": "text",
+                                        "label": "Chat ID",
+                                        "required": true
+                                    },
+                                    {
+                                        "name": "text",
+                                        "type": "text",
+                                        "label": "Text",
+                                        "required": true
+                                    },
+                                    {
+                                        "name": "messageThreadId",
+                                        "type": "number",
+                                        "label": "Message Thread ID"
+                                    },
+                                    {
+                                        "name": "parseMode",
+                                        "type": "select",
+                                        "label": "Parse Mode",
+                                        "validate": {
+                                            "enum": [
+                                                "Markdown",
+                                                "HTML"
+                                            ]
+                                        }
+                                    },
+                                    {
+                                        "name": "disableNotification",
+                                        "type": "boolean",
+                                        "label": "Disable Notifications"
+                                    },
+                                    {
+                                        "name": "disableWebPagePreview",
+                                        "type": "boolean",
+                                        "label": "Disable Link Previews"
+                                    },
+                                    {
+                                        "name": "replyToMessageId",
+                                        "type": "number",
+                                        "label": "Original Message ID"
+                                    },
+                                    {
+                                        "name": "replyMarkupAssembleType",
+                                        "type": "select",
+                                        "label": "Enter/Assemble the Reply Markup Field",
+                                        "validate": {
+                                            "enum": [
+                                                "reply_markup_enter",
+                                                "reply_markup_assemble"
+                                            ]
+                                        }
+                                    },
+                                    {
+                                        "name": "replyMarkup",
+                                        "type": "text",
+                                        "label": "Reply Markup"
+                                    },
+                                    {
+                                        "name": "chatId",
+                                        "type": "text",
+                                        "label": "Chat ID",
+                                        "required": true
+                                    },
+                                    {
+                                        "name": "text",
+                                        "type": "text",
+                                        "label": "Text",
+                                        "required": true
+                                    },
+                                    {
+                                        "name": "messageThreadId",
+                                        "type": "number",
+                                        "label": "Message Thread ID"
+                                    },
+                                    {
+                                        "name": "parseMode",
+                                        "type": "select",
+                                        "label": "Parse Mode",
+                                        "validate": {
+                                            "enum": [
+                                                "Markdown",
+                                                "HTML"
+                                            ]
+                                        }
+                                    },
+                                    {
+                                        "name": "disableNotification",
+                                        "type": "boolean",
+                                        "label": "Disable Notifications"
+                                    },
+                                    {
+                                        "name": "disableWebPagePreview",
+                                        "type": "boolean",
+                                        "label": "Disable Link Previews"
+                                    },
+                                    {
+                                        "name": "replyToMessageId",
+                                        "type": "number",
+                                        "label": "Original Message ID"
+                                    },
+                                    {
+                                        "name": "replyMarkupAssembleType",
+                                        "type": "select",
+                                        "label": "Enter/Assemble the Reply Markup Field",
+                                        "validate": {
+                                            "enum": [
+                                                "reply_markup_enter",
+                                                "reply_markup_assemble"
+                                            ]
+                                        }
+                                    },
+                                    {
+                                        "name": "replyMarkup",
+                                        "type": "text",
+                                        "label": "Reply Markup"
+                                    }
+                                ]
+                            }
+                        }
+                    ]
+                },
+                {
+                    "flow": [
+                        {
+                            "id": 12,
+                            "module": "telegram:SendReplyMessage",
+                            "version": 1,
+                            "parameters": {
+                                "__IMTCONN__": 5590829
+                            },
+                            "filter": {
+                                "name": "Greetings Filter",
+                                "conditions": [
+                                    [
+                                        {
+                                            "a": "{{1.message.text}}",
+                                            "b": "(?i)^(hi|hello|hey|good morning|good afternoon|good evening|howdy|greetings|yo|sup)[\\s!,.]*$",
+                                            "o": "text:pattern"
+                                        }
+                                    ]
+                                ]
+                            },
+                            "mapper": {
+                                "text": "👋 Welcome to Osfeld Properties!\r\n\r\nWe help you find your perfect home across \r\nIbadan — flats, bungalows, duplexes and more.\r\n\r\nSimply tell me what you're looking for. \r\nFor example:\r\n\r\n🏠 \"2 bedroom flat in Jericho\"\r\n📍 \"3 bedroom around Bodija\"\r\n💰 \"Properties under 2 million\"\r\n\r\nWhat are you looking for today?",
+                                "chatId": "{{1.message.chat.id}}",
+                                "parseMode": "Markdown",
+                                "replyMarkup": "",
+                                "messageThreadId": "",
+                                "replyToMessageId": "",
+                                "replyMarkupAssembleType": "reply_markup_enter"
+                            },
+                            "metadata": {
+                                "designer": {
+                                    "x": 956,
+                                    "y": 237
+                                },
+                                "restore": {
+                                    "expect": {
+                                        "parseMode": {
+                                            "label": "Markdown"
+                                        },
+                                        "disableNotification": {
+                                            "mode": "chose"
+                                        },
+                                        "replyMarkupAssembleType": {
+                                            "label": "Enter the Reply Markup"
+                                        }
+                                    },
+                                    "parameters": {
+                                        "__IMTCONN__": {
+                                            "data": {
+                                                "scoped": "true",
+                                                "connection": "telegram"
+                                            },
+                                            "label": "My Telegram Bot connection"
+                                        }
+                                    }
+                                },
+                                "parameters": [
+                                    {
+                                        "name": "__IMTCONN__",
+                                        "type": "account:telegram",
+                                        "label": "Connection",
+                                        "required": true
+                                    }
+                                ],
+                                "expect": [
+                                    {
+                                        "name": "chatId",
+                                        "type": "text",
+                                        "label": "Chat ID",
+                                        "required": true
+                                    },
+                                    {
+                                        "name": "text",
+                                        "type": "text",
+                                        "label": "Text",
+                                        "required": true
+                                    },
+                                    {
+                                        "name": "messageThreadId",
+                                        "type": "number",
+                                        "label": "Message Thread ID"
+                                    },
+                                    {
+                                        "name": "parseMode",
+                                        "type": "select",
+                                        "label": "Parse Mode",
+                                        "validate": {
+                                            "enum": [
+                                                "Markdown",
+                                                "HTML"
+                                            ]
+                                        }
+                                    },
+                                    {
+                                        "name": "disableNotification",
+                                        "type": "boolean",
+                                        "label": "Disable Notifications"
+                                    },
+                                    {
+                                        "name": "disableWebPagePreview",
+                                        "type": "boolean",
+                                        "label": "Disable Link Previews"
+                                    },
+                                    {
+                                        "name": "replyToMessageId",
+                                        "type": "number",
+                                        "label": "Original Message ID"
+                                    },
+                                    {
+                                        "name": "replyMarkupAssembleType",
+                                        "type": "select",
+                                        "label": "Enter/Assemble the Reply Markup Field",
+                                        "validate": {
+                                            "enum": [
+                                                "reply_markup_enter",
+                                                "reply_markup_assemble"
+                                            ]
+                                        }
+                                    },
+                                    {
+                                        "name": "replyMarkup",
+                                        "type": "text",
+                                        "label": "Reply Markup"
+                                    }
+                                ]
+                            }
+                        }
+                    ]
+                }
+            ]
+        }
+    ],
+    "metadata": {
+        "instant": true,
+        "version": 1,
+        "scenario": {
+            "roundtrips": 1,
+            "maxErrors": 3,
+            "autoCommit": true,
+            "autoCommitTriggerLast": true,
+            "sequential": false,
+            "slots": null,
+            "confidential": false,
+            "dataloss": false,
+            "dlq": false,
+            "freshVariables": false
+        },
+        "designer": {
+            "orphans": []
+        },
+        "zone": "eu1.make.com",
+        "notes": []
+    }
+}
